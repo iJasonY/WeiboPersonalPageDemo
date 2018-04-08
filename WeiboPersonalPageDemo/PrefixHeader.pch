@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  WeiboPersonalPageDemo
+//
+//  Created by JasonYan on 2018/4/8.
+//  Copyright © 2018年 JasonYan. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "DefineUI.h"
+#import "UIView+NTES.h"
+
+
+#endif /* PrefixHeader_pch */
