@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIView *scoreView;
 @property (weak, nonatomic) IBOutlet UIView *vectorView;
 
+@property (weak, nonatomic) IBOutlet UIButton *firstBtn;
+@property (weak, nonatomic) IBOutlet UIButton *secondBtn;
+@property (weak, nonatomic) IBOutlet UIButton *thirdBtn;
 
 
 @property (weak, nonatomic) IBOutlet UIView *firstLineView;
@@ -71,7 +74,7 @@
 #pragma mark -
 #pragma mark event response
 
-- (IBAction)personalVectorDidClick:(UIControl *)sender {
+- (IBAction)personalVectorDidClick:(UIButton *)sender {
     //    NSLog(@"UiControl:%ld", (long)sender.tag); //0x00b7ff
     NSInteger selectIndex = sender.tag;
     [self setSelectVectorType:selectIndex];
@@ -178,6 +181,43 @@
             self.commentNum.textColor = self.comment.textColor = defaultTextColor;
             break;
     }
+}
+
+
+#pragma mark -
+#pragma mark OverRide Method
+//重写hitTest方法，来监听View内想要响应事件的视图点击，目的是为了让其他非可点击的部分不响应响应点击事件
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    //判断当前手指是否点击到我们想要响应事件的视图上，如果是，则响应处理事件，其他则由系统处理
+    
+    //首先判断当前View是否被隐藏了，隐藏了就不需要处理了
+    if (self.isHidden == NO) {
+        //将当前View的触摸点转换坐标系，转换到头像视图的身上，生成一个新的点
+        CGPoint newP = [self convertPoint:point toView:self.userAvatar];
+        //判断如果这个新的点是在头像视图身上，那么处理点击事件最合适的view就是头像视图
+        if ( [self.userAvatar pointInside:newP withEvent:event]) {
+            return self.userAvatar;
+        }
+    
+ 
+        // 以下同上
+        CGPoint newBtnP = [self convertPoint:point toView:self.firstBtn];
+        if ( [self.firstBtn pointInside:newBtnP withEvent:event]) {
+            return self.firstBtn;
+        }
+        
+        newBtnP = [self convertPoint:point toView:self.secondBtn];
+        if ( [self.secondBtn pointInside:newBtnP withEvent:event]) {
+            return self.secondBtn;
+        }
+        
+        newBtnP = [self convertPoint:point toView:self.thirdBtn];
+        if ( [self.thirdBtn pointInside:newBtnP withEvent:event]) {
+            return self.thirdBtn;
+        }
+    }
+    // 其他情况本View 不处理，交由系统去处理
+    return nil;
 }
 
 #pragma mark -

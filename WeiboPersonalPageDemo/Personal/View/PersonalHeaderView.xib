@@ -82,7 +82,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dfn-Xr-gl0">
                     <rect key="frame" x="0.0" y="178" width="640" height="45"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4c-n2-ygP" customClass="UIControl">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4c-n2-ygP" userLabel="View0">
                             <rect key="frame" x="0.0" y="0.0" width="213.5" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzc-fR-7Aa">
@@ -97,16 +97,23 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYP-A6-sEx">
+                                    <rect key="frame" x="0.0" y="0.0" width="213.5" height="45"/>
+                                    <connections>
+                                        <action selector="personalVectorDidClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="1mo-ZL-DhC"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="5gg-Nu-3qj" secondAttribute="bottom" constant="7" id="0K7-2A-qEj"/>
                                 <constraint firstItem="Bzc-fR-7Aa" firstAttribute="top" secondItem="j4c-n2-ygP" secondAttribute="top" constant="7" id="4ZD-q0-gRa"/>
+                                <constraint firstItem="NYP-A6-sEx" firstAttribute="leading" secondItem="j4c-n2-ygP" secondAttribute="leading" id="6vb-9H-gC0"/>
+                                <constraint firstAttribute="bottom" secondItem="NYP-A6-sEx" secondAttribute="bottom" id="IkI-vt-2if"/>
+                                <constraint firstAttribute="trailing" secondItem="NYP-A6-sEx" secondAttribute="trailing" id="Qdt-5O-MMY"/>
+                                <constraint firstItem="NYP-A6-sEx" firstAttribute="top" secondItem="j4c-n2-ygP" secondAttribute="top" id="Rx3-s9-WaU"/>
                                 <constraint firstItem="5gg-Nu-3qj" firstAttribute="centerX" secondItem="j4c-n2-ygP" secondAttribute="centerX" id="TzA-jl-CSd"/>
                                 <constraint firstItem="Bzc-fR-7Aa" firstAttribute="centerX" secondItem="j4c-n2-ygP" secondAttribute="centerX" id="veY-eq-iGO"/>
                             </constraints>
-                            <connections>
-                                <action selector="personalVectorDidClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="J4P-L5-You"/>
-                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzI-AC-x0T">
                             <rect key="frame" x="213.5" y="10" width="1" height="25"/>
@@ -116,7 +123,7 @@
                                 <constraint firstAttribute="height" constant="25" id="k1f-M2-Cu8"/>
                             </constraints>
                         </view>
-                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wza-8b-758" customClass="UIControl">
+                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wza-8b-758" userLabel="View1">
                             <rect key="frame" x="213.5" y="0.0" width="213" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-Lo-ydU">
@@ -131,16 +138,23 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BB4-dw-0YB">
+                                    <rect key="frame" x="-0.5" y="0.0" width="213.5" height="45"/>
+                                    <connections>
+                                        <action selector="personalVectorDidClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="oLH-AC-KuH"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="BB4-dw-0YB" firstAttribute="top" secondItem="wza-8b-758" secondAttribute="top" id="29e-c9-YGw"/>
+                                <constraint firstItem="BB4-dw-0YB" firstAttribute="leading" secondItem="wza-8b-758" secondAttribute="leading" id="aqG-B1-Iij"/>
                                 <constraint firstItem="JD4-Lo-ydU" firstAttribute="top" secondItem="wza-8b-758" secondAttribute="top" constant="7" id="e9j-y3-pMX"/>
                                 <constraint firstItem="yBQ-tU-F1M" firstAttribute="centerX" secondItem="wza-8b-758" secondAttribute="centerX" id="hhc-G1-53J"/>
+                                <constraint firstAttribute="bottom" secondItem="BB4-dw-0YB" secondAttribute="bottom" id="jhm-ia-h9X"/>
                                 <constraint firstAttribute="bottom" secondItem="yBQ-tU-F1M" secondAttribute="bottom" constant="7" id="oMA-FT-SZ1"/>
+                                <constraint firstAttribute="trailing" secondItem="BB4-dw-0YB" secondAttribute="trailing" id="yIG-yR-pAI"/>
                                 <constraint firstItem="JD4-Lo-ydU" firstAttribute="centerX" secondItem="wza-8b-758" secondAttribute="centerX" id="yUx-tF-wRL"/>
                             </constraints>
-                            <connections>
-                                <action selector="personalVectorDidClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="78U-iU-L7u"/>
-                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUr-Rr-QFL">
                             <rect key="frame" x="426.5" y="10" width="1" height="25"/>
@@ -150,7 +164,7 @@
                                 <constraint firstAttribute="width" constant="1" id="Tnj-NR-XMq"/>
                             </constraints>
                         </view>
-                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJ9-ro-JcM" customClass="UIControl">
+                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJ9-ro-JcM" userLabel="View2">
                             <rect key="frame" x="426.5" y="0.0" width="213.5" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iS1-no-DJ0">
@@ -165,16 +179,23 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNN-iN-KoT">
+                                    <rect key="frame" x="-0.5" y="0.0" width="213.5" height="45"/>
+                                    <connections>
+                                        <action selector="personalVectorDidClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="NfY-FS-kNK"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="iS1-no-DJ0" firstAttribute="centerX" secondItem="qJ9-ro-JcM" secondAttribute="centerX" id="2mA-dM-XYz"/>
                                 <constraint firstAttribute="bottom" secondItem="RmT-1N-rgh" secondAttribute="bottom" constant="7" id="F2W-sW-FA1"/>
+                                <constraint firstItem="VNN-iN-KoT" firstAttribute="top" secondItem="qJ9-ro-JcM" secondAttribute="top" id="XKN-2s-flg"/>
                                 <constraint firstItem="iS1-no-DJ0" firstAttribute="top" secondItem="qJ9-ro-JcM" secondAttribute="top" constant="7" id="dfa-PL-LLD"/>
+                                <constraint firstAttribute="trailing" secondItem="VNN-iN-KoT" secondAttribute="trailing" id="gza-vb-E5d"/>
                                 <constraint firstItem="RmT-1N-rgh" firstAttribute="centerX" secondItem="qJ9-ro-JcM" secondAttribute="centerX" id="hG3-Xj-Xup"/>
+                                <constraint firstAttribute="bottom" secondItem="VNN-iN-KoT" secondAttribute="bottom" id="q7z-mi-XCJ"/>
+                                <constraint firstItem="VNN-iN-KoT" firstAttribute="leading" secondItem="qJ9-ro-JcM" secondAttribute="leading" id="wu0-A0-9kh"/>
                             </constraints>
-                            <connections>
-                                <action selector="personalVectorDidClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="JYF-CO-d6s"/>
-                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OZ-YW-hG9">
                             <rect key="frame" x="0.0" y="44" width="640" height="1"/>
@@ -233,12 +254,15 @@
                 <outlet property="collectionNum" destination="Bzc-fR-7Aa" id="XAp-FI-04i"/>
                 <outlet property="comment" destination="RmT-1N-rgh" id="6ta-V0-Vnw"/>
                 <outlet property="commentNum" destination="iS1-no-DJ0" id="iOd-cL-rR9"/>
+                <outlet property="firstBtn" destination="NYP-A6-sEx" id="gNp-fs-bk1"/>
                 <outlet property="firstLineView" destination="TzI-AC-x0T" id="cH2-a5-DCM"/>
                 <outlet property="firstLineWidth" destination="2Nd-lw-zjZ" id="7EE-C0-N1j"/>
                 <outlet property="score" destination="XnP-lz-Y86" id="wAj-D4-Yzk"/>
                 <outlet property="scoreView" destination="T3i-fi-jeG" id="OIo-Ee-Rq5"/>
+                <outlet property="secondBtn" destination="BB4-dw-0YB" id="k61-c2-dIw"/>
                 <outlet property="secondLineView" destination="EUr-Rr-QFL" id="z2t-eB-szS"/>
                 <outlet property="secondLineWidth" destination="Tnj-NR-XMq" id="LCd-qh-tlc"/>
+                <outlet property="thirdBtn" destination="VNN-iN-KoT" id="r31-mk-3ws"/>
                 <outlet property="trip" destination="yBQ-tU-F1M" id="MG8-ZM-snm"/>
                 <outlet property="tripNum" destination="JD4-Lo-ydU" id="VOp-xR-vOU"/>
                 <outlet property="userAvatar" destination="oUP-4Y-4Zp" id="dHR-ck-rKu"/>
