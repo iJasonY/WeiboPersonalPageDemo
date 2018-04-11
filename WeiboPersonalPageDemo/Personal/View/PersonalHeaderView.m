@@ -77,7 +77,11 @@
     [self setSelectVectorType:selectIndex];
 }
 
-
+- (IBAction)userAvatatClick:(UITapGestureRecognizer *)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(personalHeaderUserAvatarClick)]) {
+        [_delegate personalHeaderUserAvatarClick];
+    }
+}
 
 #pragma mark -
 #pragma mark helper/private methods
@@ -133,11 +137,7 @@
 
 
 
-- (IBAction)userAvatatClick:(UITapGestureRecognizer *)sender {
-    if (_delegate && [_delegate respondsToSelector:@selector(personalHeaderUserAvatarClick)]) {
-        [_delegate personalHeaderUserAvatarClick];
-    }
-}
+
 
 - (void)setSelectVectorType:(PersonalHeaderVectorType)vectorType {
     if (vectorType == self.lastSelectIndex) {
