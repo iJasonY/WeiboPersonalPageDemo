@@ -14,9 +14,16 @@
 static const CGFloat kTopHeaderViewHeight = 223.0f;
 
 
-@interface PersonalCollectionViewController ()
+@interface PersonalCollectionViewController ()<PersonalHeaderViewDelegate>
 @property (strong, nonatomic) PersonalCustomNavigationBarView *customNavigationBarView;
 @property (strong, nonatomic) PersonalHeaderView *personalHeaderView;
+
+@property (nonatomic, strong) NSMutableArray *homeArray;
+@property (nonatomic, strong) NSMutableArray *weiBoArray;
+@property (nonatomic, strong) NSMutableArray *albumArray;
+
+@property (nonatomic, strong) NSMutableDictionary *browseLocationDict;//!< 浏览位置存储Map
+
 @end
 
 @implementation PersonalCollectionViewController
@@ -34,6 +41,9 @@ static const CGFloat kTopHeaderViewHeight = 223.0f;
     self.navigationController.navigationBarHidden = YES;
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
+    
+    [self mockData];//初始化模拟数据
+    
     [self setUpUI];
     [self setUpCollectionView];
     [self.collectionView reloadData];
@@ -115,7 +125,28 @@ static const CGFloat kTopHeaderViewHeight = 223.0f;
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 7;
+    
+    NSInteger count = 0;
+    
+    PersonalHeaderVectorType vectorType = [self.personalHeaderView selectVectorType];
+    switch (vectorType) {
+        case PersonalHeaderVectorTypeHome:{
+            count = self.homeArray.count;
+        }
+            break;
+            
+        case PersonalHeaderVectorTypeWeiBo:{
+            count = self.weiBoArray.count;
+        }
+            break;
+            
+        case PersonalHeaderVectorTypeAlbum:{
+            count = self.albumArray.count;
+        }
+            break;
+    }
+    
+    return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,6 +185,33 @@ static const CGFloat kTopHeaderViewHeight = 223.0f;
 #pragma mark -
 #pragma mark UICollectionViewDelegate
 
+#pragma mark -
+#pragma mark PersonalHeaderViewDelegate
+- (void)personalHeaderUserAvatarClick {
+    
+}
+
+- (void)personalHeaderVectorWillClick:(PersonalHeaderVectorType)oldvectotType {
+    //取出collectionView 当前可视区域内最后一个单元格的indexPaths，并记录下来
+    CGFloat lastContentOffset = self.collectionView.contentOffset.y;
+    if (lastContentOffset) {
+        self.browseLocationDict[@(oldvectotType)] = @(lastContentOffset);
+    }
+    
+}
+
+- (void)personalHeaderVectorDidClick:(PersonalHeaderVectorType)vectotType {
+    //⚠️：要先刷新数据，再去做滚动操作否则将达不到预期的效果。
+    [self.collectionView reloadData];
+    
+    // 判断是否有记录的位置，如果有则滚动到上次记忆的浏览位置；
+    NSNumber *lastContentOffset = self.browseLocationDict[@(vectotType)];
+    if (lastContentOffset) {
+        CGFloat lastContentOffsetY = [lastContentOffset floatValue];
+        [self.collectionView setContentOffset:CGPointMake(0, lastContentOffsetY) animated:NO];
+    }
+    
+}
 
 #pragma mark -
 #pragma mark NetWork
@@ -182,7 +240,27 @@ static const CGFloat kTopHeaderViewHeight = 223.0f;
     if (!_personalHeaderView) {
         _personalHeaderView = [PersonalHeaderView loadForNib];
         _personalHeaderView.frame = CGRectMake(0, 0, ScreenWidth, kTopHeaderViewHeight);
+        [_personalHeaderView setSelectVectorType:(PersonalHeaderVectorTypeHome)];
+        _personalHeaderView.delegate = self;
     }
     return _personalHeaderView;
 }
+
+- (NSMutableDictionary *)browseLocationDict {
+    if (!_browseLocationDict) {
+        self.browseLocationDict = [NSMutableDictionary dictionaryWithCapacity:3];
+    }
+    return _browseLocationDict;
+}
+
+#pragma mark -
+#pragma mark Mock Data
+
+- (void)mockData {
+    self.homeArray = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""].mutableCopy;
+    self.weiBoArray = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""].mutableCopy;
+    self.albumArray = @[@"",@""].mutableCopy;
+}
+
+
 @end

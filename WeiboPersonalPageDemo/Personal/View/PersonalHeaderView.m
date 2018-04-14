@@ -139,13 +139,21 @@
 }
 
 
-
+- (PersonalHeaderVectorType)selectVectorType {
+    PersonalHeaderVectorType vectorType = (PersonalHeaderVectorType)self.lastSelectIndex;
+    return vectorType;
+}
 
 
 - (void)setSelectVectorType:(PersonalHeaderVectorType)vectorType {
     if (vectorType == self.lastSelectIndex) {
         return;
     }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(personalHeaderVectorWillClick:)]) {
+        [_delegate personalHeaderVectorWillClick:_lastSelectIndex];
+    }
+    
     [self resetTextColor:self.lastSelectIndex];
     self.lastSelectIndex = vectorType;
     switch (vectorType) {
@@ -159,6 +167,7 @@
             self.commentNum.textColor = self.comment.textColor = UIColorFromRGB(0x00b7ff);
             break;
     }
+    
     if (_delegate && [_delegate respondsToSelector:@selector(personalHeaderVectorDidClick:)]) {
         [_delegate personalHeaderVectorDidClick:vectorType];
     }

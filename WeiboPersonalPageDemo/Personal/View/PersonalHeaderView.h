@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, PersonalHeaderVectorType) {
 @property (weak, nonatomic) id<PersonalHeaderViewDelegate> delegate;
 @property (assign, nonatomic) PersonalHeaderVectorViewStyle vectorViewStyle;
 
+- (PersonalHeaderVectorType)selectVectorType;
 - (void)setSelectVectorType:(PersonalHeaderVectorType)vectorType;
 
 + (instancetype)loadForNib;
@@ -38,6 +39,7 @@ typedef NS_ENUM(NSInteger, PersonalHeaderVectorType) {
 
 @protocol PersonalHeaderViewDelegate <NSObject>
 
+- (void)personalHeaderVectorWillClick:(PersonalHeaderVectorType)oldvectotType;
 - (void)personalHeaderVectorDidClick:(PersonalHeaderVectorType)vectotType;
 - (void)personalHeaderUserAvatarClick;
 @end
