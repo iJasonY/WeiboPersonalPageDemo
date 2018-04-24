@@ -192,7 +192,7 @@ static const CGFloat kTopHeaderViewHeight = 223.0f;
 }
 
 - (void)personalHeaderVectorWillClick:(PersonalHeaderVectorType)oldvectotType {
-    //取出collectionView 当前可视区域内最后一个单元格的indexPaths，并记录下来
+    //取出collectionView当前的contentOffset，并记录下来
     CGFloat lastContentOffset = self.collectionView.contentOffset.y;
     if (lastContentOffset) {
         self.browseLocationDict[@(oldvectotType)] = @(lastContentOffset);
